@@ -1,0 +1,110 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                   LOJA DE EMBALAGENS - INÍCIO RÁPIDO                       ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📦 PROJETO COMPLETO - PRONTO PARA USAR
+
+🚀 PARA COMEÇAR:
+
+1. Abra o terminal na pasta do projeto:
+   cd loja-embalagens
+
+2. Inicie o servidor:
+   npm run dev
+
+3. Abra no navegador:
+   http://localhost:5173
+
+✅ PRONTO! O projeto está rodando!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔐 COMO FAZER LOGIN:
+
+CLIENTE REGULAR:
+  • Email: qualquer email (ex: cliente@email.com)
+  • Senha: qualquer senha (ex: 123456)
+  • Acesso: Home, Catálogo, Carrinho, Perfil
+
+ADMINISTRADOR:
+  • Email: qualquer email (ex: admin@email.com)
+  • Senha: qualquer senha (ex: 123456)
+  • Senha Admin: admin123 (obrigatória)
+  • Acesso: Gerenciamento de Estoque
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 PÁGINAS DISPONÍVEIS:
+
+✓ Home (/)
+  - Hero section atrativa
+  - Destaques de produtos
+  - Categorias
+  - Benefícios da loja
+
+✓ Catálogo (/catalogo)
+  - Grid de produtos
+  - Filtros (categoria, material, preço)
+  - Busca por nome
+  - Paginação
+
+✓ Carrinho (/carrinho) - Requer login
+  - Visualizar itens
+  - Editar quantidades
+  - Calcular total
+  - Finalizar compra
+
+✓ Perfil (/perfil) - Requer login
+  - Editar informações
+  - Gerenciar endereços
+  - Histórico de pedidos
+
+✓ Estoque (/estoque) - Requer login como ADMIN
+  - Adicionar produtos
+  - Editar produtos
+  - Deletar produtos
+  - Gerenciar estoque
+  - Filtros e busca
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎨 TECNOLOGIAS:
+
+✓ React 19
+✓ Vite
+✓ Tailwind CSS
+✓ React Router
+✓ LocalStorage (para dados)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📁 ESTRUTURA:
+
+src/
+  ├── components/     → Componentes reutilizáveis
+  ├── pages/          → Páginas da aplicação
+  ├── contexts/       → Gerenciamento de estado
+  ├── services/       → Dados e serviços
+  ├── utils/          → Hooks customizados
+  └── App.jsx         → Componente principal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 DICAS:
+
+• Os dados são salvos em localStorage (não são perdidos ao recarregar)
+• Cada usuário tem seu próprio carrinho
+• O estoque é compartilhado entre todos os usuários
+• Você pode adicionar/editar/deletar produtos como admin
+• Todos os produtos têm imagens placeholder (pode customizar)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 PARA MAIS INFORMAÇÕES:
+
+Leia o arquivo: README_PROJETO.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 Aproveite o projeto!
+
