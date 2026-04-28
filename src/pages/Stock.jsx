@@ -1,11 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { useStock } from '../utils/useStock';
-import { ProductCard } from '../components/ProductCard';
 import { categories } from '../services/mockData';
 
 /**
- * Página de Gerenciamento de Estoque (Admin)
- * Permite adicionar, editar, deletar e gerenciar estoque de produtos
+ * Página de Gerenciamento de Estoque (Admin) - Design Moderno
+ * Adicionar, editar, deletar e gerenciar estoque de produtos
  */
 export const Stock = () => {
   const { products, addProduct, updateProduct, deleteProduct, updateStock, searchProducts } = useStock();
@@ -121,14 +120,17 @@ export const Stock = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container-custom">
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Header */}
-        <div className="mb-8 flex justify-between items-center">
+        <div className="mb-12 flex justify-between items-center flex-col sm:flex-row gap-6">
           <div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">Gerenciamento de Estoque</h1>
-            <p className="text-gray-600">
-              Total de produtos: {products.length}
+            <h1 className="text-5xl font-black text-white mb-2">
+              ⚙️ Gerenciamento de <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Estoque</span>
+            </h1>
+            <p className="text-white/70 text-lg">
+              Total de produtos: <span className="font-bold text-purple-300">{products.length}</span>
             </p>
           </div>
           <button
@@ -136,7 +138,7 @@ export const Stock = () => {
               resetForm();
               setShowForm(true);
             }}
-            className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition font-semibold"
+            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
           >
             + Novo Produto
           </button>
@@ -144,15 +146,15 @@ export const Stock = () => {
 
         {/* Formulário de Produto */}
         {showForm && (
-          <div className="bg-white rounded-lg shadow-md p-8 mb-8">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-              {editingProduct ? 'Editar Produto' : 'Adicionar Novo Produto'}
+          <div className="bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl p-8 mb-8 border border-white/10">
+            <h2 className="text-2xl font-bold text-white mb-6">
+              {editingProduct ? '✎ Editar Produto' : '➕ Adicionar Novo Produto'}
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     Nome do Produto *
                   </label>
                   <input
@@ -161,23 +163,23 @@ export const Stock = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Ex: Caixa de Papelão"
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     Categoria *
                   </label>
                   <select
                     name="category"
                     value={formData.category}
                     onChange={handleInputChange}
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   >
-                    <option value="">Selecione uma categoria</option>
+                    <option value="" className="bg-slate-800">Selecione uma categoria</option>
                     {categories.map((cat) => (
-                      <option key={cat} value={cat}>
+                      <option key={cat} value={cat} className="bg-slate-800">
                         {cat}
                       </option>
                     ))}
@@ -185,7 +187,7 @@ export const Stock = () => {
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     Descrição
                   </label>
                   <textarea
@@ -194,12 +196,12 @@ export const Stock = () => {
                     onChange={handleInputChange}
                     placeholder="Descrição do produto"
                     rows="3"
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     Preço (R$) *
                   </label>
                   <input
@@ -209,12 +211,12 @@ export const Stock = () => {
                     onChange={handleInputChange}
                     placeholder="0.00"
                     step="0.01"
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     Quantidade em Estoque *
                   </label>
                   <input
@@ -223,12 +225,12 @@ export const Stock = () => {
                     value={formData.stock}
                     onChange={handleInputChange}
                     placeholder="0"
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     Material
                   </label>
                   <input
@@ -237,12 +239,12 @@ export const Stock = () => {
                     value={formData.material}
                     onChange={handleInputChange}
                     placeholder="Ex: Papelão Ondulado"
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     Tamanho
                   </label>
                   <input
@@ -251,12 +253,12 @@ export const Stock = () => {
                     value={formData.size}
                     onChange={handleInputChange}
                     placeholder="Ex: 20x15x10 cm"
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     Peso
                   </label>
                   <input
@@ -265,12 +267,12 @@ export const Stock = () => {
                     value={formData.weight}
                     onChange={handleInputChange}
                     placeholder="Ex: 200g"
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label className="block text-sm font-semibold text-white/90 mb-2">
                     URL da Imagem
                   </label>
                   <input
@@ -278,7 +280,7 @@ export const Stock = () => {
                     name="image"
                     value={formData.image}
                     onChange={handleInputChange}
-                    className="input-field"
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                   />
                 </div>
               </div>
@@ -286,16 +288,16 @@ export const Stock = () => {
               <div className="flex gap-3 pt-4">
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition font-semibold"
+                  className="flex-1 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-bold"
                 >
-                  {editingProduct ? 'Atualizar' : 'Adicionar'} Produto
+                  {editingProduct ? '✓ Atualizar' : '➕ Adicionar'} Produto
                 </button>
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="flex-1 px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition font-semibold"
+                  className="flex-1 px-6 py-3 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-all duration-300 font-bold border border-white/20"
                 >
-                  Cancelar
+                  ✕ Cancelar
                 </button>
               </div>
             </form>
@@ -303,33 +305,33 @@ export const Stock = () => {
         )}
 
         {/* Filtros */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <div className="bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl p-6 mb-8 border border-white/10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Buscar Produto
+              <label className="block text-sm font-semibold text-white/90 mb-2">
+                🔍 Buscar Produto
               </label>
               <input
                 type="text"
                 placeholder="Nome ou descrição..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="input-field"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Filtrar por Categoria
+              <label className="block text-sm font-semibold text-white/90 mb-2">
+                📦 Filtrar por Categoria
               </label>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="input-field"
+                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
               >
-                <option value="">Todas as categorias</option>
+                <option value="" className="bg-slate-800">Todas as categorias</option>
                 {categories.map((cat) => (
-                  <option key={cat} value={cat}>
+                  <option key={cat} value={cat} className="bg-slate-800">
                     {cat}
                   </option>
                 ))}
@@ -337,87 +339,75 @@ export const Stock = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Ações
+              <label className="block text-sm font-semibold text-white/90 mb-2">
+                ⚙️ Ações
               </label>
               <button
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedCategory('');
                 }}
-                className="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition font-semibold"
+                className="w-full px-4 py-3 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-all duration-300 font-bold border border-white/20"
               >
-                Limpar Filtros
+                🔄 Limpar Filtros
               </button>
             </div>
           </div>
         </div>
 
         {/* Tabela de Produtos */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white/10 backdrop-blur-xl rounded-xl shadow-2xl overflow-hidden border border-white/10">
           {filteredProducts.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-100 border-b border-gray-200">
+                <thead className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 border-b border-white/10">
                   <tr>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                      Produto
-                    </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                      Categoria
-                    </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                      Preço
-                    </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                      Estoque
-                    </th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                      Status
-                    </th>
-                    <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">
-                      Ações
-                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-white">Produto</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-white">Categoria</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-white">Preço</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-white">Estoque</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-white">Status</th>
+                    <th className="px-6 py-4 text-center text-sm font-bold text-white">Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredProducts.map((product) => {
                     let status = 'Disponível';
-                    let statusColor = 'bg-green-100 text-green-800';
+                    let statusColor = 'bg-green-500/20 text-green-300 border border-green-500/30';
 
                     if (product.stock === 0) {
                       status = 'Esgotado';
-                      statusColor = 'bg-red-100 text-red-800';
+                      statusColor = 'bg-red-500/20 text-red-300 border border-red-500/30';
                     } else if (product.stock <= 5) {
                       status = 'Baixo estoque';
-                      statusColor = 'bg-yellow-100 text-yellow-800';
+                      statusColor = 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30';
                     }
 
                     return (
-                      <tr key={product.id} className="border-b border-gray-200 hover:bg-gray-50">
+                      <tr key={product.id} className="border-b border-white/10 hover:bg-white/10 transition-all duration-300">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
                             <img
                               src={product.image}
                               alt={product.name}
-                              className="w-10 h-10 rounded object-cover"
+                              className="w-10 h-10 rounded-lg object-cover border border-white/10"
                             />
                             <div>
-                              <p className="font-semibold text-gray-800">{product.name}</p>
-                              <p className="text-xs text-gray-500">{product.material}</p>
+                              <p className="font-bold text-white">{product.name}</p>
+                              <p className="text-xs text-white/60">{product.material}</p>
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-gray-700">{product.category}</td>
-                        <td className="px-6 py-4 font-bold text-primary-600">
+                        <td className="px-6 py-4 text-white/80">{product.category}</td>
+                        <td className="px-6 py-4 font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
                           R$ {product.price.toFixed(2)}
                         </td>
                         <td className="px-6 py-4">
-                          <span className="font-semibold text-gray-800">{product.stock}</span>
-                          <p className="text-xs text-gray-500">unidades</p>
+                          <span className="font-bold text-white">{product.stock}</span>
+                          <p className="text-xs text-white/60">unidades</p>
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-semibold ${statusColor}`}>
+                          <span className={`px-3 py-1 rounded-full text-xs font-bold ${statusColor}`}>
                             {status}
                           </span>
                         </td>
@@ -425,42 +415,42 @@ export const Stock = () => {
                           <div className="flex justify-center gap-2">
                             <button
                               onClick={() => setShowStockForm(product.id)}
-                              className="px-3 py-1 text-xs bg-blue-100 text-blue-600 rounded hover:bg-blue-200 transition font-semibold"
+                              className="px-3 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-lg hover:bg-blue-500/40 transition-all duration-300 font-bold border border-blue-500/30"
                               title="Gerenciar estoque"
                             >
                               📦
                             </button>
                             <button
                               onClick={() => handleEditProduct(product)}
-                              className="px-3 py-1 text-xs bg-secondary-100 text-secondary-600 rounded hover:bg-secondary-200 transition font-semibold"
+                              className="px-3 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-lg hover:bg-purple-500/40 transition-all duration-300 font-bold border border-purple-500/30"
                             >
-                              Editar
+                              ✎
                             </button>
                             <button
                               onClick={() => handleDeleteProduct(product.id)}
-                              className="px-3 py-1 text-xs bg-red-100 text-red-600 rounded hover:bg-red-200 transition font-semibold"
+                              className="px-3 py-1 text-xs bg-red-500/20 text-red-300 rounded-lg hover:bg-red-500/40 transition-all duration-300 font-bold border border-red-500/30"
                             >
-                              Deletar
+                              🗑️
                             </button>
                           </div>
 
                           {/* Modal de Gerenciamento de Estoque */}
                           {showStockForm === product.id && (
-                            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                              <div className="bg-white rounded-lg p-6 max-w-sm w-full mx-4">
-                                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                                  Gerenciar Estoque
+                            <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 backdrop-blur-sm">
+                              <div className="bg-slate-800 rounded-xl p-6 max-w-sm w-full mx-4 border border-white/10 shadow-2xl">
+                                <h3 className="text-xl font-bold text-white mb-4">
+                                  📦 Gerenciar Estoque
                                 </h3>
-                                <p className="text-gray-600 mb-4">
-                                  Produto: <strong>{product.name}</strong>
+                                <p className="text-white/80 mb-2">
+                                  Produto: <strong className="text-purple-300">{product.name}</strong>
                                 </p>
-                                <p className="text-gray-600 mb-6">
-                                  Estoque atual: <strong>{product.stock} unidades</strong>
+                                <p className="text-white/80 mb-6">
+                                  Estoque atual: <strong className="text-blue-300">{product.stock} unidades</strong>
                                 </p>
 
                                 <div className="space-y-4">
                                   <div>
-                                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                    <label className="block text-sm font-bold text-white/90 mb-2">
                                       Tipo
                                     </label>
                                     <select
@@ -468,15 +458,15 @@ export const Stock = () => {
                                       onChange={(e) =>
                                         setStockChange({ ...stockChange, type: e.target.value })
                                       }
-                                      className="input-field"
+                                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                                     >
-                                      <option value="entrada">Entrada (Adicionar)</option>
-                                      <option value="saida">Saída (Remover)</option>
+                                      <option value="entrada" className="bg-slate-800">➕ Entrada (Adicionar)</option>
+                                      <option value="saida" className="bg-slate-800">➖ Saída (Remover)</option>
                                     </select>
                                   </div>
 
                                   <div>
-                                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                    <label className="block text-sm font-bold text-white/90 mb-2">
                                       Quantidade
                                     </label>
                                     <input
@@ -489,25 +479,25 @@ export const Stock = () => {
                                         })
                                       }
                                       placeholder="0"
-                                      className="input-field"
+                                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-500 focus:bg-white/20 transition-all duration-300"
                                     />
                                   </div>
 
                                   <div className="flex gap-3 pt-4">
                                     <button
                                       onClick={() => handleStockChange(product.id)}
-                                      className="flex-1 px-4 py-2 bg-primary-600 text-white rounded hover:bg-primary-700 transition font-semibold"
+                                      className="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 font-bold"
                                     >
-                                      Confirmar
+                                      ✓ Confirmar
                                     </button>
                                     <button
                                       onClick={() => {
                                         setShowStockForm(null);
                                         setStockChange({ quantity: 0, type: 'entrada' });
                                       }}
-                                      className="flex-1 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition font-semibold"
+                                      className="flex-1 px-4 py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-all duration-300 font-bold border border-white/20"
                                     >
-                                      Cancelar
+                                      ✕ Cancelar
                                     </button>
                                   </div>
                                 </div>
@@ -522,9 +512,10 @@ export const Stock = () => {
               </table>
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-2xl text-gray-500">😔</p>
-              <p className="text-xl text-gray-600 mt-4">Nenhum produto encontrado</p>
+            <div className="text-center py-16">
+              <p className="text-6xl mb-4">😔</p>
+              <p className="text-2xl text-white font-bold mb-2">Nenhum produto encontrado</p>
+              <p className="text-white/70">Tente ajustar seus filtros</p>
             </div>
           )}
         </div>
